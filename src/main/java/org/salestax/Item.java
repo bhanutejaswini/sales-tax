@@ -56,4 +56,9 @@ public class Item {
     public int getQuantity() {
         return quantity;
     }
+
+    public double getTotalPrice() {
+        double tax = TaxCalculator.calculateSalesTax(this);
+        return price + tax;
+    }
 }
