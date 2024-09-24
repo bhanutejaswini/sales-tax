@@ -1,27 +1,12 @@
 package org.salestax;
-
-import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        ShoppingCart cart = new ShoppingCart();
+        InputHandler inputHandler = new InputHandler();
 
-        ArrayList<Item> items = new ArrayList<>();
+        inputHandler.handleInput(cart);
 
-        System.out.println("Enter items (type 'done' to finish):");
-
-        while(sc.hasNextLine()){
-            String itemDescription = sc.nextLine();
-
-            if (itemDescription.equalsIgnoreCase("done")) {
-                break;
-            }
-
-            items.add(new Item(itemDescription));
-        }
-
-        Receipt receipt = new Receipt(items);
+        Receipt receipt = new Receipt(cart);
         receipt.printReceipt();
-
-        sc.close();
     }
 }

@@ -1,12 +1,10 @@
 package org.salestax;
 
-import java.util.List;
-
 public class Receipt {
-    private List<Item> items;
+    private final ShoppingCart cart;
 
-    public Receipt(List<Item> items) {
-        this.items = items;
+    public Receipt(ShoppingCart cart) {
+        this.cart = cart;
     }
 
     public void printReceipt() {
@@ -14,9 +12,9 @@ public class Receipt {
         double totalAmount = 0;
 
         System.out.println("\nReceipt:");
-        for (Item item : items) {
-            double itemTax = item.calculateSalesTax();
-            double itemTotalPrice = item.totalPrice();
+        for (Item item : cart.getItems()) {
+            double itemTax = TaxCalculator.calculateSalesTax(item);
+            double itemTotalPrice = item.getPrice() + itemTax;
             System.out.printf("%d %s: %.2f\n", item.getQuantity(), item.getName(), itemTotalPrice);
             totalTax += itemTax;
             totalAmount += itemTotalPrice;

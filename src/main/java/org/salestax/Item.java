@@ -37,28 +37,20 @@ public class Item {
         return "other";
     }
 
-    public double calculateSalesTax() {
-        double salesTax = 0;
-        if (!category.equals("book") && !category.equals("food") && !category.equals("medicine")) {
-            salesTax += price * 0.10;
-        }
-        if (isImported) {
-            salesTax += price * 0.05;
-        }
-        return roundUp(salesTax);
-    }
-
-    private double roundUp(double value) {
-        return Math.ceil(value * 20) / 20;
-    }
-
-
-    public double totalPrice() {
-        return price + calculateSalesTax();
-    }
-
     public String getName() {
         return name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public boolean getIsImported(){
+        return isImported;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public int getQuantity() {
